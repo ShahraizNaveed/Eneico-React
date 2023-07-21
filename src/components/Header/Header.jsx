@@ -11,6 +11,7 @@ import { useState } from 'react';
 function Header() {
   // Make Nav sticky when scrolling
   const [show, setShow] = useState(false);
+  const [expanded, setExpanded] = useState(false);
   const makeSticky = () => {
     if (window.scrollY >= 90) {
       setShow(true);
@@ -22,34 +23,71 @@ function Header() {
   window.addEventListener('scroll', makeSticky);
 
   return (
-    <Navbar collapseOnSelect expand="lg" className={show ? "sticky-top header-bg" : ""}>
+    <Navbar expanded={expanded} expand="lg" className={show ? "sticky-top header-bg" : ""}>
       <Container>
         <Navbar.Brand><Link to="/"><img src={logo} alt="Enieco" /></Link></Navbar.Brand>
-        <Navbar.Toggle aria-controls="responsive-navbar-nav" />
+        <Navbar.Toggle
+          aria-controls="responsive-navbar-nav"
+          onClick={() => setExpanded(!expanded)}
+        />
         <Navbar.Collapse id="responsive-navbar-nav">
           <Nav className="mx-auto">
-            <NavLink className="nav-link text-center" to="/">Home</NavLink>
-            <NavLink className="nav-link text-center color" to="/about">About</NavLink>
-            <NavLink className="nav-link text-center color" to="/services">Services</NavLink>
-            <NavLink className="nav-link text-center color" to="/projects">Projects</NavLink>
-            <NavLink className="nav-link text-center color" to="/shop">Shop</NavLink>
-            <NavLink className="nav-link text-center color" to="/blog">Blog</NavLink>
-            <NavLink className="nav-link text-center color" to="/contact">Contact</NavLink>
-
-            {/* <NavDropdown title="Dropdown" id="collasible-nav-dropdown">
-              <NavDropdown.Item href="#action/3.1">Action</NavDropdown.Item>
-              <NavDropdown.Item href="#action/3.2">
-                Another action
-              </NavDropdown.Item>
-              <NavDropdown.Item href="#action/3.3">Something</NavDropdown.Item>
-              <NavDropdown.Divider />
-              <NavDropdown.Item href="#action/3.4">
-                Separated link
-              </NavDropdown.Item>
-            </NavDropdown> */}
+            <NavLink
+              className="nav-link text-center"
+              to="/"
+              onClick={() => setExpanded(false)}
+            >
+              Home
+            </NavLink>
+            <NavLink
+              className="nav-link text-center color"
+              to="/about"
+              onClick={() => setExpanded(false)}
+            >
+              About
+            </NavLink>
+            <NavLink
+              className="nav-link text-center color"
+              to="/services"
+              onClick={() => setExpanded(false)}
+            >
+              Services
+            </NavLink>
+            <NavLink
+              className="nav-link text-center color"
+              to="/projects"
+              onClick={() => setExpanded(false)}
+            >
+              Projects
+            </NavLink>
+            <NavLink
+              className="nav-link text-center color"
+              to="/shop"
+              onClick={() => setExpanded(false)}
+            >
+              Shop
+            </NavLink>
+            <NavLink
+              className="nav-link text-center color"
+              to="/blog"
+              onClick={() => setExpanded(false)}
+            >
+              Blog
+            </NavLink>
+            <NavLink
+              className="nav-link text-center color"
+              to="/contact"
+              onClick={() => setExpanded(false)}
+            >
+              Contact
+            </NavLink>
           </Nav>
           <Nav>
-            <NavLink className="nav-link text-center" to="/search">
+            <NavLink
+              className="nav-link text-center"
+              to="/search"
+              onClick={() => setExpanded(false)}
+            >
               <div className='nav-icon'>
                 <BiSearch
                   size={20}

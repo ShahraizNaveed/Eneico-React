@@ -4,6 +4,7 @@ import GetQuotation from '../../components/GetQuotation/GetQuotation'
 import EneicoWorks from '../../components/EneicoWorks/EneicoWorks'
 
 const Services = () => {
+  window.scrollTo(0, 0);
   return (
     <>
       <CommonBanner title="Services" />
