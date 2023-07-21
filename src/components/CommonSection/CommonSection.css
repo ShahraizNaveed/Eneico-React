@@ -1,0 +1,23 @@
+.left-section{
+    background-image: url("../../assets/images/projects/construct.png");
+    background-repeat: no-repeat;
+    background-size: contain;
+    height: 50vh;
+}
+
+.left-opacity {
+    background: rgba(5, 23, 50, 0.533);
+    height: 50vh;
+}
+
+.right-section {
+    background-image: url("../../assets/images/projects/construction.png");
+    background-repeat: no-repeat;
+    background-size: contain;
+    height: 50vh;
+}
+
+.right-opacity {
+    background: rgba(255, 225, 0, 0.5);
+    height: 50vh;
+}
