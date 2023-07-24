@@ -1,0 +1,59 @@
+.testimonial-section {
+    padding: 50px 0 50px 0;
+}
+
+.card {
+    border: none;
+}
+
+.quote-icon img {
+    background-color: #838486;
+    height: 50px;
+    padding: 10px;
+    margin-bottom: 30px;
+}
+
+.card-title {
+    margin-top: 50px;
+}
+
+.card-text {
+    color: #838486;
+    font-style: italic;
+    font-weight: 500;
+}
+
+.avatar {
+    height: 40px !important;
+    border-radius: 50%;
+}
+
+.negative-margin {
+    margin-top: -40px !important;
+}
+
+
+@media screen and (max-width: 768px) {
+    .card {
+        margin-top: 30px !important;
+    }
+
+    .negative-margin {
+        margin-top: 0px !important;
+    }
+
+    .avatar {
+        height: 50px !important;
+    }
+
+    .card-text {}
+
+    .card-title {
+        font-size: 12px !important;
+    }
+
+    .card-subtitle {
+        font-size: 12px !important;
+
+    }
+}

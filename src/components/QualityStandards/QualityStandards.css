@@ -18,6 +18,10 @@
     font-weight: 700;
 }
 
+.bullet-para {
+    margin-top: 20px;
+}
+
 .bullet-para p {
     color: #000000;
     font-weight: 600;
