@@ -1,6 +1,9 @@
 .afterClient-section {
-    background-color: #DEE0E3E5;
+    background-image: url('../../assets/images/home/contact.png');
+    background-repeat: no-repeat;
+    background-size: cover;
     margin-bottom: 100px;
+    padding: 50px 0;
 }
 
 .afterClient-section h1 {
