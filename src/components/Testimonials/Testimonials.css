@@ -2,6 +2,18 @@
     padding: 50px 0 50px 0;
 }
 
+.testimonial-section h4 {
+    color: #000000;
+    font-weight: 700;
+    font-size: 30px;
+    margin-bottom: 50px;
+}
+
+.heading {
+    color: #DC1B1B;
+    font-weight: 600;
+}
+
 .card {
     border: none;
 }
@@ -28,25 +40,27 @@
     border-radius: 50%;
 }
 
-.negative-margin {
-    margin-top: -40px !important;
+.person-name{
+    margin-bottom: -5px;
+    font-size: 15px;
+    color: #000000;
+    font-weight: 600;
 }
 
+.person-role{
+    color: #000000;
+    font-size: 12px;
+    font-weight: 400;
+}
 
 @media screen and (max-width: 768px) {
     .card {
         margin-top: 30px !important;
     }
 
-    .negative-margin {
-        margin-top: 0px !important;
-    }
-
     .avatar {
         height: 50px !important;
     }
-
-    .card-text {}
 
     .card-title {
         font-size: 12px !important;

@@ -88,7 +88,7 @@ const Testimonials = () => {
         <section className='testimonial-section'>
             <Container>
                 <Row>
-                    <p className='text-center'>Testimonials</p>
+                    <p className='text-center heading'>Testimonials</p>
                     <h4 className='text-center'>Our Client Say</h4>
                     <Col md={5}>
                         <div className='d-flex justify-content-center'>
@@ -111,12 +111,12 @@ const Testimonials = () => {
                                                         <p>
                                                             {item.description}
                                                         </p>
-                                                        <div className='d-flex align-items-center justify-content-center'>
+                                                        <div className='d-flex align-items-center justify-content-center my-4'>
                                                             <img src={item.image} alt="Avatar" className='img-fluid avatar' />
 
-                                                            <div className='negative-margin'>
-                                                                <p>{item.name}</p>
-                                                                <p className="">{item.designation}</p>
+                                                            <div>
+                                                                <p className='person-name'>{item.name}</p>
+                                                                <p className="person-role">{item.designation}</p>
                                                             </div>
                                                         </div>
                                                     </div>
