@@ -5,6 +5,7 @@ import AboutHome from '../../components/AboutHome/AboutHome';
 import Team from '../../components/Team/Team';
 import AfterClientSection from '../../components/AfterClientSection/AfterClientSection';
 import Clients from '../../components/Clients/Clients';
+import ProjectsSlider from '../../components/ProjectsSlider/ProjectsSlider';
 
 const Home = () => {
   window.scrollTo(0, 0);
@@ -13,6 +14,7 @@ const Home = () => {
       <HomeBanner />
       <AboutHome hide="false" />
       <Service />
+      <ProjectsSlider />
       <Team />
       <Clients hide="false"  />
       <AfterClientSection />

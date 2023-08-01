@@ -5,35 +5,23 @@ import { Col, Container, Row } from 'react-bootstrap'
 const CommonSection = () => {
     return (
         <>
-            <Container>
-                <Row>
-                    <Col md={6}>
-                        <section className='left-section'>
-                            <div className="left-opacity">
-                                <div className='left-padding'>
-                                    <p>WHY CHOOSE US?</p>
-                                    <h1>
-                                        MAKE THE WORLD BETTER PLACE
-                                        <br />
-                                        WITH CONSTRUCTION QUALITY
-                                    </h1>
-                                    <p>
-                                        South-central construction region since 2005
-                                    </p>
-                                </div>
-                            </div>
-                        </section>
-                    </Col>
+            <section className='common-section'>
+                <div className='left-section'>
+                    <div>
+                        <p className='chooseUs'>WHY CHOOSE US?</p>
+                        <p className='make-world-better'>Make The World Better Place With Construction Quality</p>
+                        <p className='south-central'>South-central construction region since 2005</p>
+                    </div>
+                </div>
 
-                    <Col md={6}>
-                        <section className="right-section">
-                            <div className="right-opacity">
-
-                            </div>
-                        </section>
-                    </Col>
-                </Row>
-            </Container>
+                <div className='right-section'>
+                    <div>
+                        <p className='bring-idea'>Bring Your Ideas</p>
+                        <p className='innovation-to-life'>Innovation to life</p>
+                        <button className='contact-expert'>Contact Our Expert</button>
+                    </div>
+                </div>
+            </section>
         </>
     )
 }
