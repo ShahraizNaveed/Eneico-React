@@ -78,7 +78,10 @@ const AllServices = () => {
                                                 </div>
                                             </div>
                                         </Link>
+
                                     </div>
+
+
                                 </Col>
                             )
                         })}

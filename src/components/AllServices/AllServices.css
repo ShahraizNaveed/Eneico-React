@@ -10,8 +10,8 @@
 }
 
 .image-position {
-    position: relative;
-    margin-bottom: 50px;
+    /* position: relative; */
+    /* margin-bottom: 50px; */
     transition: all ease 0.5s;
 }
 
@@ -25,9 +25,6 @@
 }
 
 .text-position {
-    position: absolute;
-    bottom: -30px;
-    left: 66px;
     background-color: #F0BD00;
     border-radius: 10% 0% 25% 0% / 0% 10% 90% 49%;
     transition: all ease 0.5s;
@@ -65,4 +62,17 @@
 .allServices-heading {
     font-weight: 700;
     color: #838486;
+}
+
+.image-position img {
+    /* width: 100%; */
+}
+
+.services-link{
+    position: relative;
+}
+.text-position {
+    position: absolute;
+    left: 0;
+    bottom: -520%;
 }
