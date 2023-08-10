@@ -11,6 +11,7 @@ import image7 from "../../assets/images/projectPage/7.png"
 import image8 from "../../assets/images/projectPage/8.png"
 import image9 from "../../assets/images/projectPage/9.png"
 import { Col, Container, Row } from 'react-bootstrap';
+import { Link } from 'react-router-dom';
 
 const FilterProjects = () => {
     const [data, setData] = useState([]);
@@ -56,7 +57,8 @@ const FilterProjects = () => {
             id: 6,
             titile: "Interior",
             image: image6,
-            role: "Tenant Improvement"
+            role: "Tenant Improvement",
+            service: "Mirlando Constructions"
         },
         // {
         //     id: 7,
@@ -103,9 +105,16 @@ const FilterProjects = () => {
                     </div>
                     {
                         data.map((item) =>
-                            <Col md={4} key={item.id} className="galleryItem">
-                                <img src={item.image} />
-                            </Col>)
+                            <Col md={4} key={item.id} className="galleryItem fade-in">
+                                <Link to={`/projects/${item.id}`}>
+                                    <div>
+                                        <img src={item.image} />
+                                        <p className='service-name'>{item.service}</p>
+                                        <p className='our-role'>Our Role: <span>{item.role}</span></p>
+                                    </div>
+                                </Link>
+                            </Col>
+                        )
                     }
                 </Row>
             </Container>

@@ -62,11 +62,14 @@ const AboutHome = (props) => {
                             </div>
                         }
 
-                        <Link to="/about">
-                            <button className="left-side-btn">
-                                MORE ABOUT US
-                            </button>
-                        </Link>
+                        {
+                            props.hide == "false" && <Link to="/about">
+                                <button className="left-side-btn">
+                                    MORE ABOUT US
+                                </button>
+                            </Link>
+                        }
+
                     </Col>
                     <Col md={6}>
                         <div className="d-flex justify-content-center align-items-center right-side">

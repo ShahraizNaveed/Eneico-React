@@ -65,7 +65,7 @@ const AllServices = () => {
                     <Row>
                         {services.map((item) => {
                             return (
-                                <Col key={item.id} md={4} className='text-center'>
+                                <Col key={item.id} md={4} className='text-center fade-in'>
                                     <div className='image-position allService-negative'>
                                         <Link to={`/services/${item.id}`} className='services-link'>
                                             <img src={item.image} alt={item.name} className='img-fluid' />

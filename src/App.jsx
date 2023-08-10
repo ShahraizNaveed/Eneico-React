@@ -5,12 +5,15 @@ import Home from './pages/Home/Home';
 import About from './pages/About/About';
 import Services from './pages/Services/Services';
 import Projects from './pages/Projects/Projects';
-import Shop from './pages/Shop/Shop';
 import Blog from './pages/Blog/Blog';
 import Contact from './pages/Contact/Contact';
 import Search from './pages/Search/Search';
 import Footer from './components/Footer/Footer';
 import ScrollToTop from './components/ScrollToTop/ScrollToTop';
+import Products from './pages/Products/Products';
+import SingleServicePage from './pages/SingleServicePage/SingleServicePage';
+import SingleBlogPage from './pages/SingleBlogPage/SingleBlogPage';
+import SingleProjectPage from './pages/SingleProjectPage/SingleProjectPage';
 
 function App() {
   return (
@@ -21,9 +24,12 @@ function App() {
           <Route exact path='/' element={<Home />} />
           <Route exact path='/about' element={<About />} />
           <Route exact path='/services' element={<Services />} />
+          <Route exact path='/services/:id' element={<SingleServicePage />} />
           <Route exact path='/projects' element={<Projects />} />
-          <Route exact path='/shop' element={<Shop />} />
+          <Route exact path='/projects/:id' element={<SingleProjectPage />} />
+          <Route exact path='/products' element={<Products />} />
           <Route exact path='/blog' element={<Blog />} />
+          <Route exact path='/blog/:id' element={<SingleBlogPage />} />
           <Route exact path='/contact' element={<Contact />} />
           <Route exact path='/search' element={<Search />} />
         </Routes>

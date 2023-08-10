@@ -1,15 +1,13 @@
 import React from 'react'
 import CommonBanner from '../../components/CommonBanner/CommonBanner'
-import BlogCard from '../../components/BlogCard/BlogCard'
 
-const Blog = () => {
+const Products = () => {
   window.scrollTo(0, 0);
   return (
     <>
-      <CommonBanner title="Blogs" />
-      <BlogCard />
+      <CommonBanner title="Products" />
     </>
   )
 }
 
-export default Blog
+export default Products

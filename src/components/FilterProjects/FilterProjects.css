@@ -13,6 +13,7 @@
 .galleryItem {
   display: flex;
   justify-content: center;
+  margin-bottom: 20px;
 }
 
 .filterItem ul {
@@ -43,4 +44,26 @@
 .selected {
   color: #F0BD00;
   border-bottom: 2px solid #F0BD00;
+}
+
+.service-name {
+  color: #838486;
+  text-align: center;
+  font-size: 17px;
+  font-weight: 700;
+  margin-top: -10px;
+}
+
+.our-role {
+  color: #838486;
+  text-align: center;
+  font-size: 13px;
+  font-weight: 600;
+  margin-top: -10px;
+}
+
+.our-role span {
+  color: #F0BD00;
+  font-size: 13px;
+  font-weight: 700;
 }

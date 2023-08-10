@@ -1,6 +1,7 @@
 import React from 'react'
 import "./CommonSection.css"
 import { Col, Container, Row } from 'react-bootstrap'
+import { Link } from 'react-router-dom'
 
 const CommonSection = () => {
     return (
@@ -18,7 +19,9 @@ const CommonSection = () => {
                     <div>
                         <p className='bring-idea'>Bring Your Ideas</p>
                         <p className='innovation-to-life'>Innovation to life</p>
-                        <button className='contact-expert'>Contact Our Expert</button>
+                        <Link to="/contact">
+                            <button className='contact-expert'>Contact Our Expert</button>
+                        </Link>
                     </div>
                 </div>
             </section>
