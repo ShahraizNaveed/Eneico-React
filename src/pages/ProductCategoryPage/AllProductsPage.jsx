@@ -7,7 +7,7 @@ import { Col, Container, Form, InputGroup, Row } from 'react-bootstrap';
 import hero from "../../assets/images/productPage/hero.png"
 import image from "../../assets/images/productPage/reach-stacker.png"
 import { useState } from 'react';
-import ProductCategories from '../../components/productCategories/productCategories';
+import ProductCategories from '../../components/ProductCategories/productCategories';
 import filter from "../../assets/images/productPage/slider.png"
 import reset from "../../assets/images/productPage/reset.png"
 import { TbMathGreater } from "react-icons/tb"
