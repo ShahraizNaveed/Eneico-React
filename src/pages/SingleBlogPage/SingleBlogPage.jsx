@@ -16,6 +16,9 @@ import icon1 from "../../assets/images/singleBlog/icon1.png"
 import icon2 from "../../assets/images/singleBlog/icon2.png"
 import { FiFacebook } from "react-icons/fi"
 import { BiLogoFacebook, BiLogoTwitter, BiLogoLinkedin, BiLogoPinterestAlt } from "react-icons/bi"
+import { useEffect } from 'react';
+import axios from 'axios';
+import { useState } from 'react';
 
 
 const itemsData = [
@@ -178,150 +181,185 @@ const recentComments = [
 
 const SingleBlogPage = () => {
   window.scrollTo(0, 0);
+  const [data, setData] = useState([]);
+  const [recentBlogs, setRecentBlogs] = useState([]);
+  const [recentComments, setRecentComments] = useState([]);
   const { id } = useParams();
 
-  const name = itemsData.find((item) => item.id == id);
+
+  useEffect(() => {
+    axios.get(`${import.meta.env.VITE_URL}/api/Blogs/GetBlog/${id}`)
+      .then((res) => {
+        console.log(res.data);
+        setData(res.data)
+      })
+
+      axios.get(`${import.meta.env.VITE_URL}/api/Blogs/GetRecentBlogs`)
+      .then((res) => {
+        console.log(res.data);
+        setRecentBlogs(res.data)
+      })
+
+      axios.get(`${import.meta.env.VITE_URL}/api/Blogs/GetRecentComments/${id}`)
+      .then((res) => {
+        console.log(res.data);
+        setRecentComments(res.data)
+      })
+  }, [])
+
+  // const name = itemsData.find((item) => item.id == id);
 
   const handleSubmit = () => {
 
   }
 
+    let same = data.find((item) => item.id == recentComments.blogId) ;
+    console.log(same);
+
   return (
     <>
-      <CommonBanner title="Blog" />
-      <section className='single-blog-section'>
-        <Container>
-          <Row>
-            <Col md={1}>
-              <div className='social-links-div'>
-                <Link to="/">
-                  <p>
-                    <BiLogoFacebook size={30} className='fb-icon' />
-                  </p>
-                </Link>
+      {
+        data.map((blog) => {
+          return (
+            <>
+              <CommonBanner title="Blog" />
+              <section className='single-blog-section' key={blog.id}>
+                <Container>
+                  <Row>
+                    <Col md={1}>
+                      <div className='social-links-div'>
+                        <Link to="/">
+                          <p>
+                            <BiLogoFacebook size={30} className='fb-icon' />
+                          </p>
+                        </Link>
 
-                <Link to="/">
-                  <p>
-                    <BiLogoTwitter size={30} className='social-icon' />
-                  </p>
-                </Link>
+                        <Link to="/">
+                          <p>
+                            <BiLogoTwitter size={30} className='social-icon' />
+                          </p>
+                        </Link>
 
-                <Link to="/">
-                  <p>
-                    <BiLogoLinkedin size={30} className='social-icon' />
-                  </p>
-                </Link>
+                        <Link to="/">
+                          <p>
+                            <BiLogoLinkedin size={30} className='social-icon' />
+                          </p>
+                        </Link>
 
-                <Link to="/">
-                  <p>
-                    <BiLogoPinterestAlt size={30} className='social-icon' />
-                  </p>
-                </Link>
-              </div>
+                        <Link to="/">
+                          <p>
+                            <BiLogoPinterestAlt size={30} className='social-icon' />
+                          </p>
+                        </Link>
+                      </div>
 
-            </Col>
+                    </Col>
 
-            <Col md={6}>
-              <h1 className='single-blog-heading'>
-                {name.title}
-              </h1>
-              <img src={name.image} alt="" className='img-fluid single-blog-image' />
-              <p className='my-4'>
-                <span className='date-span'>
-                  <img src={icon1} alt="icon" className='img-fluid mx-2' />
-                  {name.date}
-                </span>
+                    <Col md={6}>
+                      <h1 className='single-blog-heading'>
+                        {blog.title}
+                      </h1>
+                      <img src={blog.imagePath} alt="" className='img-fluid single-blog-image' />
+                      <p className='my-4'>
+                        <span className='date-span'>
+                          <img src={icon1} alt="icon" className='img-fluid mx-2' />
+                          {blog.date}
+                        </span>
 
-                <span className='category-span mx-4'>
-                  <img src={icon2} alt="icon" className='img-fluid mx-2' />
-                  Ideal Design
-                </span>
-              </p>
+                        <span className='category-span mx-4'>
+                          <img src={icon2} alt="icon" className='img-fluid mx-2' />
+                          Ideal Design
+                        </span>
+                      </p>
 
-              <p className='single-blog-desc'>
-                {name.description}
-              </p>
+                      <p className='single-blog-desc'>
+                        {blog.description}
+                      </p>
 
-              <div>
-                <p className='comment-heading'>Leave A Comment</p>
-                <Form onSubmit={handleSubmit}>
-                  <div>
-                    <Row>
-                      <Col>
-                        <Form.Control required placeholder="First name" name='first_name' />
-                      </Col>
-                      <Col>
-                        <Form.Control required placeholder="Last name" name='last_name' />
-                      </Col>
-                    </Row>
-                  </div>
+                      <div>
+                        <p className='comment-heading'>Leave A Comment</p>
+                        <Form onSubmit={handleSubmit}>
+                          <div>
+                            <Row>
+                              <Col>
+                                <Form.Control required placeholder="First name" name='first_name' />
+                              </Col>
+                              <Col>
+                                <Form.Control required placeholder="Last name" name='last_name' />
+                              </Col>
+                            </Row>
+                          </div>
 
 
-                  <div className='mt-4'>
-                    <FloatingLabel controlId="floatingTextarea2" label="Comments">
-                      <Form.Control
-                        name='comments'
-                        as="textarea"
-                        required
-                        placeholder="Leave a comment here"
-                        style={{ height: '100px' }}
-                      />
-                    </FloatingLabel>
-                  </div>
+                          <div className='mt-4'>
+                            <FloatingLabel controlId="floatingTextarea2" label="Comments">
+                              <Form.Control
+                                name='comments'
+                                as="textarea"
+                                required
+                                placeholder="Leave a comment here"
+                                style={{ height: '100px' }}
+                              />
+                            </FloatingLabel>
+                          </div>
 
-                  <button type="submit" className='post-button'>POST COMMENT</button>
-                </Form>
-              </div>
-            </Col>
+                          <button type="submit" className='post-button'>POST COMMENT</button>
+                        </Form>
+                      </div>
+                    </Col>
 
-            <Col md={1}></Col>
+                    <Col md={1}></Col>
 
-            <Col md={4}>
-              <div className='blog-small-section'>
-                <div className='first-div'>
-                  <p>Recent Posts</p>
-                  <hr className='w-25 line' />
-                  <ul className='right-section-blog'>
-                    {
-                      blogData.map((blog) => {
-                        return (
-                          <Link key={blog.id} to={`/blog/${blog.id}`}>
-                            <li>{blog.title}</li>
-                          </Link>
-                        )
-                      })
-                    }
-                  </ul>
-                </div>
+                    <Col md={4}>
+                      <div className='blog-small-section'>
+                        <div className='first-div'>
+                          <p>Recent Posts</p>
+                          <hr className='w-25 line' />
+                          <ul className='right-section-blog'>
+                            {
+                              recentBlogs.map((blog) => {
+                                return (
+                                  <Link key={blog.id} to={`/blog/${blog.id}`}>
+                                    <li>{blog.title}</li>
+                                  </Link>
+                                )
+                              })
+                            }
+                          </ul>
+                        </div>
 
-                <div className="first-div mt-4">
-                  <p>Recent Comments</p>
-                  <hr className="w-25 line" />
-                  <ul className="right-section-blog">
-                    {
-                      recentComments.map((comment) => {
-                        return (
-                          <li key={comment.id}>
-                            <span className='role-span'>
-                              {comment.role}
-                            </span>
-                            on
-                            <Link to={`/blog/${comment.id}`}>
-                              <span className='blogTitle-span'>
-                                {comment.blogTitle}
-                              </span>
-                            </Link>
-                          </li>
-                        )
-                      })
-                    }
-                  </ul>
-                </div>
-              </div>
-            </Col>
-          </Row>
-        </Container>
-      </section>
+                        <div className="first-div mt-4">
+                          <p>Recent Comments</p>
+                          <hr className="w-25 line" />
+                          <ul className="right-section-blog">
+                            {
+                              recentComments.map((comment) => {
+                                return (
+                                  <li key={comment.id}>
+                                    <span className='role-span'>
+                                      {comment.admin === 'true' ? "admin" : "user"}
+                                    </span>
+                                    on
+                                    <Link to={`/blog/${comment.id}`}>
+                                      <span className='blogTitle-span'>
+                                        {comment.blogTitle}
+                                      </span>
+                                    </Link>
+                                  </li>
+                                )
+                              })
+                            }
+                          </ul>
+                        </div>
+                      </div>
+                    </Col>
+                  </Row>
+                </Container>
+              </section>
+            </>
+          )
+        })
+      }
     </>
   )
 }

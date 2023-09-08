@@ -13,7 +13,7 @@ const Home = () => {
     <>
       <HomeBanner />
       <AboutHome hide="false" />
-      <Service />
+      {/* <Service /> */}
       <ProjectsSlider />
       <Team />
       <Clients hide="false"  />

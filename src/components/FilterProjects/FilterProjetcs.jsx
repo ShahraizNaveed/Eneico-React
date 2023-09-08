@@ -12,10 +12,12 @@ import image8 from "../../assets/images/projectPage/8.png"
 import image9 from "../../assets/images/projectPage/9.png"
 import { Col, Container, Row } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
+import axios from 'axios';
 
 const FilterProjects = () => {
     const [data, setData] = useState([]);
     const [collection, setCollection] = useState([]);
+    const [projetcs, setProjects] = useState([]);
 
     const ProjectsData = [
         {
@@ -82,12 +84,17 @@ const FilterProjects = () => {
 
 
     useEffect(() => {
-        setData(ProjectsData);
-        setCollection([... new Set(ProjectsData.map((item) => item.titile))])
+        axios.get(`${import.meta.env.VITE_URL}/api/Projects/GetProjects`)
+            .then((res) => {
+                console.log(res.data);
+                setProjects(res.data)
+                setData(res.data);
+                setCollection([... new Set(res.data.map((item) => item.category))])
+            })
     }, [])
 
     const projects_filter = (itemData) => {
-        const filterData = ProjectsData.filter((item) => item.titile == itemData);
+        const filterData = projetcs.filter((item) => item.category == itemData);
         setData(filterData);
     }
 
@@ -97,7 +104,7 @@ const FilterProjects = () => {
                 <Row>
                     <div className="filterItem">
                         <ul>
-                            <li><button onClick={() => setData(ProjectsData)}>All</button></li>
+                            <li><button onClick={() => setData(projetcs)}>All</button></li>
                             {
                                 collection.map((item) => <li><button onClick={() => { projects_filter(item) }}>{item}</button></li>)
                             }
@@ -108,9 +115,9 @@ const FilterProjects = () => {
                             <Col md={4} key={item.id} className="galleryItem fade-in">
                                 <Link to={`/projects/${item.id}`}>
                                     <div>
-                                        <img src={item.image} />
-                                        <p className='service-name'>{item.service}</p>
-                                        <p className='our-role'>Our Role: <span>{item.role}</span></p>
+                                        <img src={item.headerImage} />
+                                        <p className='service-name'>{item.name}</p>
+                                        <p className='our-role'>Our Role: <span>{item.category}</span></p>
                                     </div>
                                 </Link>
                             </Col>

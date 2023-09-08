@@ -1,10 +1,11 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import "./Team.css"
 import { Col, Container, Row } from 'react-bootstrap'
 import image1 from "../../assets/images/team/team1.png"
 import image2 from "../../assets/images/team/team2.png"
 import image3 from "../../assets/images/team/team3.png"
 import image4 from "../../assets/images/team/team4.png"
+import axios from 'axios'
 
 const teamData = [
     {
@@ -35,6 +36,15 @@ const teamData = [
 
 
 const Team = () => {
+    const [teams, setTeams] = useState([]);
+
+    useEffect(() => {
+        axios.get(`${import.meta.env.VITE_URL}/api/Home/GetTeam`)
+            .then((res) => {
+                console.log(res.data);
+                setTeams(res.data)
+            })
+    }, [])
     return (
         <section className='team-section'>
             <Container>
@@ -42,12 +52,12 @@ const Team = () => {
                     <h1 className='text-center'>Our Great <span className='team-span'>Team</span></h1>
                     <p className='text-center'>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Placeat, iste.</p>
                     {
-                        teamData.map((team) => {
+                        teams.map((team) => {
                             return (
                                 <Col key={team.id} md={3}>
                                     <div className='d-flex justify-content-center'>
                                         <div className='my-5 team-container'>
-                                            <img src={team.image} alt={team.name} className='img-fluid' />
+                                            <img src={team.imagePath} alt={team.name} className='img-fluid' />
                                             <div className='team-content text-center'>
                                                 <p className='name'>{team.name}</p>
                                                 <p className='role'>{team.role}</p>

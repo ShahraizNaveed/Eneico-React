@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import "./BlogCard.css"
 import { Card, Col, Container, Row } from 'react-bootstrap'
 import image1 from "../../assets/images/blogPage/1.png"
@@ -13,6 +13,7 @@ import image9 from "../../assets/images/blogPage/9.png"
 import { FaUserAlt } from "react-icons/fa"
 import { BsFillChatFill } from "react-icons/bs"
 import { Link } from 'react-router-dom'
+import axios from 'axios'
 
 const itemsData = [
     {
@@ -101,6 +102,15 @@ const itemsData = [
 const BlogCard = () => {
     const itemsPerPage = 3; // Number of items to show per page
     const [displayedItems, setDisplayedItems] = useState(itemsPerPage);
+    const [blogs, setBlogs] = useState([]);
+
+    useEffect(() => {
+        axios.get(`${import.meta.env.VITE_URL}/api/Blogs/GetBlogs`)
+            .then((res) => {
+                console.log(res.data);
+                setBlogs(res.data)
+            })
+    }, [])
 
     const handleLoadMore = () => {
         setDisplayedItems(displayedItems + itemsPerPage);
@@ -109,27 +119,27 @@ const BlogCard = () => {
         <section className='blog-card-section'>
             <Container>
                 <Row>
-                    {itemsData.slice(0, displayedItems).map(item => (
+                    {blogs.slice(0, displayedItems).map(item => (
                         <Col md={4} key={item.id} className='d-flex justify-content-center'>
                             <Link to={`/blog/${item.id}`}>
                                 <Card key={item.id} style={{ width: '18rem' }} className="fade-in">
                                     <div className='blog-image'>
-                                        <Card.Img variant="top" src={item.image} />
+                                        <Card.Img variant="top" src={item.imagePath} />
                                         <p className='blog-date'>{item.date}</p>
                                     </div>
                                     <Card.Body>
                                         <p className='role-comment d-flex align-items-center justify-content-center'>
-                                            <FaUserAlt size={12} className='user-icon mx-2' />  {item.role}
+                                            <FaUserAlt size={12} className='user-icon mx-2' />  {item.admin == true ? "admin" : "user" }
                                             <span className='mx-3'>|</span>
                                             <BsFillChatFill size={12} className='user-icon' />
-                                            <span className='mx-1'>{item.comments.length}</span>
+                                            <span className='mx-1'>{item.commentsCount}</span>
                                             Comments
                                         </p>
                                         <Card.Title>
                                             <span className='card-title mx-2'>{item.title}</span>
                                         </Card.Title>
                                         <Card.Text>
-                                            {item.description}
+                                            {item.description.slice(0, 50)}
                                         </Card.Text>
                                     </Card.Body>
                                 </Card>

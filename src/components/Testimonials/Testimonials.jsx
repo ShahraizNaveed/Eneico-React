@@ -1,10 +1,11 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import "./Testimonials.css"
 import { Card, Col, Container, Row } from 'react-bootstrap'
 import clientSay from "../../assets/images/about/client-say.png"
 import quote from "../../assets/images/about/quote.png"
 import avatar from "../../assets/images/about/avatar.png"
 import Slider from 'react-slick'
+import axios from 'axios'
 
 
 const testimonials = [
@@ -46,6 +47,14 @@ const testimonials = [
 ]
 
 const Testimonials = () => {
+    const [testimonial, setTestimonial] = useState([]);
+    useEffect(() => {
+        axios.get(`${import.meta.env.VITE_URL}/api/About/GetTestimonials`)
+            .then((res) => {
+                console.log(res.data);
+                setTestimonial(res.data)
+            })
+    }, [])
 
     var settings = {
         // dots: true,
@@ -100,10 +109,10 @@ const Testimonials = () => {
                         <Container>
                             <Slider {...settings}>
                                 {
-                                    testimonials.map((item) => {
+                                    testimonial.map((item) => {
                                         return (
                                             <>
-                                                <Card className='shadow'>
+                                                <Card className='shadow' key={item.id}>
                                                     <div className='quote-icon'>
                                                         <img src={quote} alt="Testimonials" className='img-fluid' />
                                                     </div>
@@ -112,10 +121,14 @@ const Testimonials = () => {
                                                             {item.description}
                                                         </p>
                                                         <div className='d-flex align-items-center justify-content-center my-4'>
-                                                            <img src={item.image} alt="Avatar" className='img-fluid avatar' />
+                                                            {
+                                                                item.imagePath ? <img src={item.imagePath} alt="Avatar" className='img-fluid avatar' />
+                                                                    :
+                                                                    <img src={avatar} alt="Avatar" className='img-fluid avatar' />
+                                                            }
 
                                                             <div>
-                                                                <p className='person-name'>{item.name}</p>
+                                                                <p className='person-name'>{item.clientName}</p>
                                                                 <p className="person-role">{item.designation}</p>
                                                             </div>
                                                         </div>

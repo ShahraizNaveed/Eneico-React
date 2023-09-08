@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import "./Clients.css"
 import Marquee from 'react-fast-marquee';
 import image1 from "../../assets/images/clients/one.png"
@@ -12,6 +12,7 @@ import image8 from "../../assets/images/clients/eight.png"
 import image9 from "../../assets/images/clients/nine.png"
 import logo from "../../assets/images/about/client.png"
 import { Col, Container, Row } from 'react-bootstrap';
+import axios from 'axios';
 
 const brands = [
   {
@@ -54,6 +55,16 @@ const brands = [
 
 
 const Clients = (props) => {
+  const [clients, setClients] = useState([]);
+
+  useEffect(() => {
+    axios.get(`${import.meta.env.VITE_URL}/api/Home/GetClients`)
+      .then((res) => {
+        console.log(res.data);
+        setClients(res.data)
+      })
+  }, [])
+
   return (
     <section className="clients-section">
       <Container>
@@ -87,10 +98,10 @@ const Clients = (props) => {
 
           <Marquee speed={100}>
             {
-              brands.map((item) => {
+              clients.map((item) => {
                 return (
                   <div key={item.id} className="image_wrapper">
-                    <img src={item.image} alt="" className='img-fluid' />
+                    <img src={item.imagePath} alt="" className='img-fluid' />
                   </div>
                 )
               })

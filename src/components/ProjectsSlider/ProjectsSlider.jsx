@@ -11,11 +11,12 @@ import image6 from "../../assets/images/projectPage/6.png"
 import image7 from "../../assets/images/projectPage/7.png"
 import image8 from "../../assets/images/projectPage/8.png"
 import image9 from "../../assets/images/projectPage/9.png"
+import axios from 'axios';
 
 const ProjectsSlider = () => {
     const [data, setData] = useState([]);
     const [collection, setCollection] = useState([]);
-    const [loading, setLoading] = useState(false);
+    const [projects, setProjects] = useState([]);
 
     const ProjectsData = [
         {
@@ -65,17 +66,24 @@ const ProjectsSlider = () => {
         },
     ]
 
+
     useEffect(() => {
-        setData(ProjectsData);
-        setCollection([... new Set(ProjectsData.map((item) => item.titile))])
+        axios.get(`${import.meta.env.VITE_URL}/api/Home/GetProjects`)
+            .then((res) => {
+                console.log(res.data);
+                setData(res.data);
+                setProjects(res.data)
+                setCollection([... new Set(res.data.map((item) => item.titile))])
+            })
+
     }, [])
 
-    const gallery_filter = (itemData) => {
-        const filterData = ProjectsData.filter((item) => item.titile == itemData);
-        console.log(filterData);
-        setData(filterData);
-        console.log(data);
-    }
+    // const gallery_filter = (itemData) => {
+    //     const filterData = ProjectsData.filter((item) => item.titile == itemData);
+    //     console.log(filterData);
+    //     setData(filterData);
+    //     console.log(data);
+    // }
 
 
     var settings = {
@@ -122,18 +130,22 @@ const ProjectsSlider = () => {
                     <h1 className='text-center'>Our Company <span className='projects-span'>Projects</span></h1>
                     <p className='text-center'>South-Central construction region since 2005 </p>
 
-                    <div className="projectItems">
+                    {/* <div className="projectItems">
                         <ul>
                             <li><button onClick={() => setData(ProjectsData)}>All</button></li>
                             {
                                 collection.map((item) => <li key={item}><button onClick={() => { gallery_filter(item) }}>{item}</button></li>)
                             }
                         </ul>
-                    </div>
-                    <Slider {...settings}>
+                    </div> */}
+                    <Slider {...settings} className='mt-5'>
                         {
                             data.map((item) =>
-                                <div key={item.id} className=""><img className='img-fluid' src={item.image} /></div>)
+                                <div key={item.id} className="">
+                                    <img className='img-fluid' src={item.imagePath} />
+                                </div>
+
+                            )
                         }
                     </Slider>
                 </Row>

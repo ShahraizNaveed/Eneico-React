@@ -48,10 +48,10 @@ function Header() {
             </NavLink>
             <NavLink
               className="nav-link text-center color"
-              to="/services"
+              to="/products"
               onClick={() => setExpanded(false)}
             >
-              Services
+              Products
             </NavLink>
             <NavLink
               className="nav-link text-center color"
@@ -60,13 +60,13 @@ function Header() {
             >
               Projects
             </NavLink>
-            <NavLink
+            {/* <NavLink
               className="nav-link text-center color"
               to="/products"
               onClick={() => setExpanded(false)}
             >
               Products
-            </NavLink>
+            </NavLink> */}
             <NavLink
               className="nav-link text-center color"
               to="/blog"
