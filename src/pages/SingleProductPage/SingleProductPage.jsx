@@ -4,8 +4,8 @@ import { Link, useParams } from 'react-router-dom';
 import { Col, Container, Row } from 'react-bootstrap';
 import "./SingleProductPage.css"
 import ProductFeatures from '../../components/ProductFeatures/ProductFeatures';
-import ProductSpecification from '../../components/productSpecification/productSpecification';
 import { TbMathGreater } from "react-icons/tb"
+import ProductSpecification from '../../components/productSpecification/productSpecification';
 
 
 const SingleProductPage = () => {
