@@ -5,6 +5,8 @@ import { Col, Container, Row } from 'react-bootstrap';
 import "./SingleProductPage.css"
 import ProductFeatures from '../../components/ProductFeatures/ProductFeatures';
 import ProductSpecification from '../../components/productSpecification/productSpecification';
+import { TbMathGreater } from "react-icons/tb"
+
 
 const SingleProductPage = () => {
     window.scrollTo(0, 0);
@@ -19,12 +21,12 @@ const SingleProductPage = () => {
                             <Link to="/products">
                                 Product
                             </Link>
-                            <span className='mx-3'>></span>
+                            <span className='mx-3'><TbMathGreater /></span>
 
                             <Link to={`/products/${category}`}>
                                 {category}
                             </Link>
-                            <span className='mx-3'>></span>
+                            <span className='mx-3'><TbMathGreater /></span>
                             Hello
                         </p>
                     </div>

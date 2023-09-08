@@ -10,6 +10,8 @@ import { useState } from 'react';
 import ProductCategories from '../../components/productCategories/productCategories';
 import filter from "../../assets/images/productPage/slider.png"
 import reset from "../../assets/images/productPage/reset.png"
+import { TbMathGreater } from "react-icons/tb"
+
 
 const products = [
   {
@@ -95,7 +97,7 @@ const AllProductsPage = () => {
               <Link to="/products">
                 Product
               </Link>
-              <span className='mx-3'>></span>
+              <span className='mx-3'><TbMathGreater /></span>
               {category}
             </p>
           </div>
@@ -179,7 +181,7 @@ const AllProductsPage = () => {
                                   return (
                                     <>
                                       <p key={model.id} className='model-para'>
-                                        {model.name} >
+                                        {model.name} <TbMathGreater />
                                       </p>
                                     </>
                                   )

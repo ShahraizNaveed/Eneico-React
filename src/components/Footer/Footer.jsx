@@ -4,6 +4,8 @@ import { Button, Col, Container, Row } from 'react-bootstrap'
 import logo from "../../assets/images/logo/footer-logo.png"
 import { BsTwitter, BsYoutube, BsLinkedin, BsFacebook } from "react-icons/bs"
 import { Link } from 'react-router-dom';
+import { TbMathGreater } from "react-icons/tb"
+
 
 const Footer = () => {
   return (
@@ -26,34 +28,34 @@ const Footer = () => {
           <Col md={3}>
             <h2 className='footer-heading'>QUICK LINKS</h2>
             <Link to="/about">
-              <p className='footer-link'>> About Us</p>
+              <p className='footer-link'><TbMathGreater /> About Us</p>
             </Link>
 
             <Link to="/services">
-              <p className='footer-link'>> Services</p>
+              <p className='footer-link'><TbMathGreater /> Services</p>
             </Link>
 
             <Link to="/projects">
-              <p className='footer-link'>> Projects</p>
+              <p className='footer-link'><TbMathGreater /> Projects</p>
             </Link>
 
             <Link to="/blog">
-              <p className='footer-link'>> Blogs</p>
+              <p className='footer-link'><TbMathGreater /> Blogs</p>
             </Link>
 
             <Link to="/contact">
-              <p className='footer-link'>> Contact Us</p>
+              <p className='footer-link'><TbMathGreater /> Contact Us</p>
             </Link>
 
           </Col>
           <Col md={3}>
             <h2 className='footer-heading'>OUR SERVICES</h2>
-            <p className='footer-link'>> Accurate Measurements</p>
-            <p className='footer-link'>> Solid Waste Removal</p>
-            <p className='footer-link'>> Warranty Service</p>
-            <p className='footer-link'>> Project Planning</p>
-            <p className='footer-link'>> Constant Maintenance</p>
-            <p className='footer-link'>> Qualified Specialists</p>
+            <p className='footer-link'><TbMathGreater /> Accurate Measurements</p>
+            <p className='footer-link'><TbMathGreater /> Solid Waste Removal</p>
+            <p className='footer-link'><TbMathGreater /> Warranty Service</p>
+            <p className='footer-link'><TbMathGreater /> Project Planning</p>
+            <p className='footer-link'><TbMathGreater /> Constant Maintenance</p>
+            <p className='footer-link'><TbMathGreater /> Qualified Specialists</p>
           </Col>
           <Col md={3}>
             <h2 className='footer-heading'>NEWSLETTER</h2>
