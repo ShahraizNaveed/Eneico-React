@@ -97,11 +97,21 @@ const Clients = (props) => {
           }
 
           <Marquee speed={100}>
-            {
+            {/* {
               clients.map((item) => {
                 return (
                   <div key={item.id} className="image_wrapper">
                     <img src={item.imagePath} alt="" className='img-fluid' />
+                  </div>
+                )
+              })
+            } */}
+
+            {
+              brands.map((item) => {
+                return (
+                  <div key={item.id} className="image_wrapper">
+                    <img src={item.image} alt="" className='img-fluid' />
                   </div>
                 )
               })

@@ -15,7 +15,7 @@ const About = () => {
       <AboutHome hide="true" />
       <QualityStandards />
       <Clients hide="true" />
-      <PassionBanner />
+      {/* <PassionBanner /> */}
       <Testimonials />
     </>
   )

@@ -117,16 +117,11 @@ const Testimonials = () => {
                                                         <img src={quote} alt="Testimonials" className='img-fluid' />
                                                     </div>
                                                     <div>
-                                                        <p>
+                                                        <p className='text-center'>
                                                             {item.description}
                                                         </p>
                                                         <div className='d-flex align-items-center justify-content-center my-4'>
-                                                            {
-                                                                item.imagePath ? <img src={item.imagePath} alt="Avatar" className='img-fluid avatar' />
-                                                                    :
-                                                                    <img src={avatar} alt="Avatar" className='img-fluid avatar' />
-                                                            }
-
+                                                            <img src={avatar} alt="Avatar" className='img-fluid avatar' />
                                                             <div>
                                                                 <p className='person-name'>{item.clientName}</p>
                                                                 <p className="person-role">{item.designation}</p>
@@ -138,6 +133,37 @@ const Testimonials = () => {
                                         )
                                     })
                                 }
+
+                                {/* {
+                                    testimonials.map((item) => {
+                                        return (
+                                            <>
+                                                <Card className='shadow' key={item.id}>
+                                                    <div className='quote-icon'>
+                                                        <img src={quote} alt="Testimonials" className='img-fluid' />
+                                                    </div>
+                                                    <div>
+                                                        <p>
+                                                            {item.description}
+                                                        </p>
+                                                        <div className='d-flex align-items-center justify-content-center my-4'>
+                                                            {
+                                                                item.imagePath ? <img src={item.image} alt="Avatar" className='img-fluid avatar' />
+                                                                    :
+                                                                    <img src={avatar} alt="Avatar" className='img-fluid avatar' />
+                                                            }
+
+                                                            <div>
+                                                                <p className='person-name'>{item.name}</p>
+                                                                <p className="person-role">{item.designation}</p>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </Card>
+                                            </>
+                                        )
+                                    })
+                                } */}
                             </Slider>
                         </Container>
                     </Col>

@@ -29,7 +29,7 @@ function App() {
           <Route exact path='/products/:category' element={<AllProductsPage />} />
           <Route exact path='/products/:category/:id' element={<SingleProductPage />} />
           <Route exact path='/blog' element={<Blog />} />
-          <Route exact path='/blog/:id' element={<SingleBlogPage />} />
+          <Route exact path='/blog/:blogId' element={<SingleBlogPage />} />
           <Route exact path='/contact' element={<Contact />} />
           <Route exact path='/search' element={<Search />} />
         </Routes>

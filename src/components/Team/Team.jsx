@@ -48,7 +48,7 @@ const Team = () => {
     return (
         <section className='team-section'>
             <Container>
-                <Row>
+                <Row className='justify-content-center'>
                     <h1 className='text-center'>Our Great <span className='team-span'>Team</span></h1>
                     <p className='text-center'>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Placeat, iste.</p>
                     {
@@ -57,7 +57,7 @@ const Team = () => {
                                 <Col key={team.id} md={3}>
                                     <div className='d-flex justify-content-center'>
                                         <div className='my-5 team-container'>
-                                            <img src={team.imagePath} alt={team.name} className='img-fluid' />
+                                            <img src={image2} alt={team.name} className='img-fluid' />
                                             <div className='team-content text-center'>
                                                 <p className='name'>{team.name}</p>
                                                 <p className='role'>{team.role}</p>
@@ -68,6 +68,25 @@ const Team = () => {
                             )
                         })
                     }
+
+
+                    {/* {
+                        teamData.map((team) => {
+                            return (
+                                <Col key={team.id} md={3}>
+                                    <div className='d-flex justify-content-center'>
+                                        <div className='my-5 team-container'>
+                                            <img src={team.image} alt={team.name} className='img-fluid' />
+                                            <div className='team-content text-center'>
+                                                <p className='name'>{team.name}</p>
+                                                <p className='role'>{team.role}</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </Col>
+                            )
+                        })
+                    } */}
                 </Row>
             </Container>
         </section>

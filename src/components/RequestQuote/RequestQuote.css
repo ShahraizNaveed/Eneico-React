@@ -36,7 +36,7 @@
 }
 
 .style-col p {
-    font-weight: 700;
+    font-weight: 500;
     color: #838486;
-    font-size: 12px;
+    /* font-size: 12px; */
 }

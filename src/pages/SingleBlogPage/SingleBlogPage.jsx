@@ -19,6 +19,8 @@ import { BiLogoFacebook, BiLogoTwitter, BiLogoLinkedin, BiLogoPinterestAlt } fro
 import { useEffect } from 'react';
 import axios from 'axios';
 import { useState } from 'react';
+import dayjs from 'dayjs';
+import Loader from "../../components/Loader/Loader"
 
 
 const itemsData = [
@@ -151,7 +153,7 @@ const blogData = [
   },
 ];
 
-const recentComments = [
+const recentCommentss = [
   {
     id: 1,
     role: "Admin",
@@ -184,42 +186,37 @@ const SingleBlogPage = () => {
   const [data, setData] = useState([]);
   const [recentBlogs, setRecentBlogs] = useState([]);
   const [recentComments, setRecentComments] = useState([]);
-  const { id } = useParams();
-
+  const [loading, setLoading] = useState(false);
+  const { blogId } = useParams();
 
   useEffect(() => {
-    axios.get(`${import.meta.env.VITE_URL}/api/Blogs/GetBlog/${id}`)
+    axios.get(`${import.meta.env.VITE_URL}/api/Blogs/GetBlog/${blogId}`)
       .then((res) => {
-        console.log(res.data);
+        setLoading(true);
         setData(res.data)
+        setLoading(false);
       })
 
-      axios.get(`${import.meta.env.VITE_URL}/api/Blogs/GetRecentBlogs`)
+    axios.get(`${import.meta.env.VITE_URL}/api/Blogs/GetRecentBlogs`)
       .then((res) => {
-        console.log(res.data);
         setRecentBlogs(res.data)
       })
 
-      axios.get(`${import.meta.env.VITE_URL}/api/Blogs/GetRecentComments/${id}`)
+    axios.get(`${import.meta.env.VITE_URL}/api/Blogs/GetRecentComments`)
       .then((res) => {
-        console.log(res.data);
         setRecentComments(res.data)
       })
   }, [])
 
-  // const name = itemsData.find((item) => item.id == id);
 
   const handleSubmit = () => {
 
   }
 
-    let same = data.find((item) => item.id == recentComments.blogId) ;
-    console.log(same);
-
   return (
     <>
       {
-        data.map((blog) => {
+        loading ? <Loader /> : data.map((blog) => {
           return (
             <>
               <CommonBanner title="Blog" />
@@ -259,11 +256,12 @@ const SingleBlogPage = () => {
                       <h1 className='single-blog-heading'>
                         {blog.title}
                       </h1>
-                      <img src={blog.imagePath} alt="" className='img-fluid single-blog-image' />
+                      {/* <img src={blog.imagePath} alt="" className='img-fluid single-blog-image' /> */}
+                      <img src={image3} alt="" className='img-fluid single-blog-image' />
                       <p className='my-4'>
                         <span className='date-span'>
                           <img src={icon1} alt="icon" className='img-fluid mx-2' />
-                          {blog.date}
+                          {dayjs(blog.date).format("MM/DD/YYYY")}
                         </span>
 
                         <span className='category-span mx-4'>
@@ -306,6 +304,18 @@ const SingleBlogPage = () => {
                           <button type="submit" className='post-button'>POST COMMENT</button>
                         </Form>
                       </div>
+
+                      {/* <div>
+                        {blog.comments.map((comment) => {
+                          return (
+                            <>
+                              <p>
+                                {comment.email}
+                              </p>
+                            </>
+                          )
+                        })}
+                      </div> */}
                     </Col>
 
                     <Col md={1}></Col>
@@ -335,14 +345,14 @@ const SingleBlogPage = () => {
                             {
                               recentComments.map((comment) => {
                                 return (
-                                  <li key={comment.id}>
+                                  <li key={comment.blogId}>
                                     <span className='role-span'>
                                       {comment.admin === 'true' ? "admin" : "user"}
                                     </span>
                                     on
-                                    <Link to={`/blog/${comment.id}`}>
+                                    <Link to={`/blog/${comment.blogId}`}>
                                       <span className='blogTitle-span'>
-                                        {comment.blogTitle}
+                                        {comment.title}
                                       </span>
                                     </Link>
                                   </li>
@@ -360,6 +370,144 @@ const SingleBlogPage = () => {
           )
         })
       }
+
+
+
+      {/* <CommonBanner title="Blog" />
+      <section className='single-blog-section' key={name.id}>
+        <Container>
+          <Row>
+            <Col md={1}>
+              <div className='social-links-div'>
+                <Link to="/">
+                  <p>
+                    <BiLogoFacebook size={30} className='fb-icon' />
+                  </p>
+                </Link>
+
+                <Link to="/">
+                  <p>
+                    <BiLogoTwitter size={30} className='social-icon' />
+                  </p>
+                </Link>
+
+                <Link to="/">
+                  <p>
+                    <BiLogoLinkedin size={30} className='social-icon' />
+                  </p>
+                </Link>
+
+                <Link to="/">
+                  <p>
+                    <BiLogoPinterestAlt size={30} className='social-icon' />
+                  </p>
+                </Link>
+              </div>
+
+            </Col>
+
+            <Col md={6}>
+              <h1 className='single-blog-heading'>
+                {name.title}
+              </h1>
+              <img src={name.image} alt="" className='img-fluid single-blog-image' />
+              <p className='my-4'>
+                <span className='date-span'>
+                  <img src={icon1} alt="icon" className='img-fluid mx-2' />
+                  {name.date}
+                </span>
+
+                <span className='category-span mx-4'>
+                  <img src={icon2} alt="icon" className='img-fluid mx-2' />
+                  Ideal Design
+                </span>
+              </p>
+
+              <p className='single-blog-desc'>
+                {name.description}
+              </p>
+
+              <div>
+                <p className='comment-heading'>Leave A Comment</p>
+                <Form onSubmit={handleSubmit}>
+                  <div>
+                    <Row>
+                      <Col>
+                        <Form.Control required placeholder="First name" name='first_name' />
+                      </Col>
+                      <Col>
+                        <Form.Control required placeholder="Last name" name='last_name' />
+                      </Col>
+                    </Row>
+                  </div>
+
+
+                  <div className='mt-4'>
+                    <FloatingLabel controlId="floatingTextarea2" label="Comments">
+                      <Form.Control
+                        name='comments'
+                        as="textarea"
+                        required
+                        placeholder="Leave a comment here"
+                        style={{ height: '100px' }}
+                      />
+                    </FloatingLabel>
+                  </div>
+
+                  <button type="submit" className='post-button'>POST COMMENT</button>
+                </Form>
+              </div>
+            </Col>
+
+            <Col md={1}></Col>
+
+            <Col md={4}>
+              <div className='blog-small-section'>
+                <div className='first-div'>
+                  <p>Recent Posts</p>
+                  <hr className='w-25 line' />
+                  <ul className='right-section-blog'>
+                    {
+                      blogData.map((blog) => {
+                        return (
+                          <Link key={blog.id} to={`/blog/${blog.id}`}>
+                            <li>{blog.title}</li>
+                          </Link>
+                        )
+                      })
+                    }
+                  </ul>
+                </div>
+
+                <div className="first-div mt-4">
+                  <p>Recent Comments</p>
+                  <hr className="w-25 line" />
+                  <ul className="right-section-blog">
+                    {
+                      recentCommentss.map((comment) => {
+                        return (
+                          <li key={comment.id}>
+                            <span className='role-span'>
+                              {comment.admin === 'true' ? "admin" : "user"}
+                            </span>
+                            on
+                            <Link to={`/blog/${comment.id}`}>
+                              <span className='blogTitle-span'>
+                                {comment.blogTitle}
+                              </span>
+                            </Link>
+                          </li>
+                        )
+                      })
+                    }
+                  </ul>
+                </div>
+              </div>
+            </Col>
+          </Row>
+        </Container>
+      </section> */}
+
     </>
   )
 }

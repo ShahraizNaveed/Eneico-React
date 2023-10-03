@@ -13,11 +13,13 @@ import image9 from "../../assets/images/projectPage/9.png"
 import { Col, Container, Row } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
+import Loader from "../../components/Loader/Loader"
 
 const FilterProjects = () => {
     const [data, setData] = useState([]);
     const [collection, setCollection] = useState([]);
     const [projetcs, setProjects] = useState([]);
+    const [loading, setLoading] = useState(false);
 
     const ProjectsData = [
         {
@@ -86,10 +88,11 @@ const FilterProjects = () => {
     useEffect(() => {
         axios.get(`${import.meta.env.VITE_URL}/api/Projects/GetProjects`)
             .then((res) => {
-                console.log(res.data);
+                setLoading(true);
                 setProjects(res.data)
                 setData(res.data);
                 setCollection([... new Set(res.data.map((item) => item.category))])
+                setLoading(false);
             })
     }, [])
 
@@ -99,33 +102,53 @@ const FilterProjects = () => {
     }
 
     return (
-        <section className='filter-projects-section'>
-            <Container>
-                <Row>
-                    <div className="filterItem">
-                        <ul>
-                            <li><button onClick={() => setData(projetcs)}>All</button></li>
+        <>
+            {
+                loading ? <Loader /> : <section className='filter-projects-section'>
+                    <Container>
+                        <Row>
+                            <div className="filterItem">
+                                <ul>
+                                    <li><button onClick={() => setData(projetcs)}>All</button></li>
+                                    {
+                                        collection.map((item) => <li key={item}><button onClick={() => { projects_filter(item) }}>{item}</button></li>)
+                                    }
+                                </ul>
+                            </div>
                             {
-                                collection.map((item) => <li><button onClick={() => { projects_filter(item) }}>{item}</button></li>)
+                                data.map((item) =>
+                                    <Col md={4} key={item.id} className="galleryItem fade-in">
+                                        <Link to={`/projects/${item.id}`}>
+                                            <div>
+                                                {/* <img src={item.headerImage} className='img-fluid' /> */}
+                                                <img src={image4} className='img-fluid' />
+                                                <p className='service-name'>{item.name}</p>
+                                                <p className='our-role'>Our Role: <span>{item.ourRole}</span></p>
+                                            </div>
+                                        </Link>
+                                    </Col>
+                                )
                             }
-                        </ul>
-                    </div>
-                    {
-                        data.map((item) =>
-                            <Col md={4} key={item.id} className="galleryItem fade-in">
-                                <Link to={`/projects/${item.id}`}>
-                                    <div>
-                                        <img src={item.headerImage} />
-                                        <p className='service-name'>{item.name}</p>
-                                        <p className='our-role'>Our Role: <span>{item.category}</span></p>
-                                    </div>
-                                </Link>
-                            </Col>
-                        )
-                    }
-                </Row>
-            </Container>
-        </section>
+
+
+                            {/* {
+                    ProjectsData.map((item) =>
+                        <Col md={4} key={item.id} className="galleryItem fade-in">
+                            <Link to={`/projects/${item.id}`}>
+                                <div>
+                                    <img src={item.image} />
+                                    <p className='service-name'>{item.titile}</p>
+                                    <p className='our-role'>Our Role: <span>{item.service}</span></p>
+                                </div>
+                            </Link>
+                        </Col>
+                    )
+                } */}
+                        </Row>
+                    </Container>
+                </section>
+            }
+        </>
     )
 }
 

@@ -49,3 +49,7 @@ color: #f4ce11 !important;
   .projects-slider-section img {
     border-radius: 15px;
   }
+
+  .project-img{
+    width: 200px !important;
+  }

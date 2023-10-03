@@ -14,8 +14,6 @@ import image9 from "../../assets/images/projectPage/9.png"
 import axios from 'axios';
 
 const ProjectsSlider = () => {
-    const [data, setData] = useState([]);
-    const [collection, setCollection] = useState([]);
     const [projects, setProjects] = useState([]);
 
     const ProjectsData = [
@@ -70,21 +68,10 @@ const ProjectsSlider = () => {
     useEffect(() => {
         axios.get(`${import.meta.env.VITE_URL}/api/Home/GetProjects`)
             .then((res) => {
-                console.log(res.data);
-                setData(res.data);
                 setProjects(res.data)
-                setCollection([... new Set(res.data.map((item) => item.titile))])
             })
 
     }, [])
-
-    // const gallery_filter = (itemData) => {
-    //     const filterData = ProjectsData.filter((item) => item.titile == itemData);
-    //     console.log(filterData);
-    //     setData(filterData);
-    //     console.log(data);
-    // }
-
 
     var settings = {
         dots: true,
@@ -130,21 +117,23 @@ const ProjectsSlider = () => {
                     <h1 className='text-center'>Our Company <span className='projects-span'>Projects</span></h1>
                     <p className='text-center'>South-Central construction region since 2005 </p>
 
-                    {/* <div className="projectItems">
-                        <ul>
-                            <li><button onClick={() => setData(ProjectsData)}>All</button></li>
-                            {
-                                collection.map((item) => <li key={item}><button onClick={() => { gallery_filter(item) }}>{item}</button></li>)
-                            }
-                        </ul>
-                    </div> */}
-                    <Slider {...settings} className='mt-5'>
+                    {/* <Slider {...settings} className='mt-5'>
                         {
-                            data.map((item) =>
+                            projects.map((item) =>
                                 <div key={item.id} className="">
                                     <img className='img-fluid' src={item.imagePath} />
+                                    <p>{item.clientName}</p>
                                 </div>
+                            )
+                        }
+                    </Slider> */}
 
+                    <Slider {...settings} className='mt-5'>
+                        {
+                            ProjectsData.map((item) =>
+                                <div key={item.id} className="">
+                                    <img className='img-fluid' src={item.image} />
+                                </div>
                             )
                         }
                     </Slider>

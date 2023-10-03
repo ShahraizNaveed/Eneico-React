@@ -77,7 +77,7 @@ const RequestQuote = () => {
                                 <img src={helmet} alt="" className='img-fluid' />
                             </div>
 
-                            <div className='mx-4'>
+                            <div className='mx-5'>
                                 <h6>High Quality Build</h6>
                                 <p>Pellentesque nec efficitur felis. Nam sit amet
                                     ultrices diam</p>
@@ -89,7 +89,7 @@ const RequestQuote = () => {
                                 <img src={idea} alt="" className='img-fluid' />
                             </div>
 
-                            <div className='mx-4'>
+                            <div className='mx-5'>
                                 <h6>Unique Idea</h6>
                                 <p>In hac habitasse platea dictumst. Nunc
                                     ultricies dolor nunc</p>
@@ -101,7 +101,7 @@ const RequestQuote = () => {
                                 <img src={equipment} alt="" className='img-fluid' />
                             </div>
 
-                            <div className='mx-4'>
+                            <div className='mx-5'>
                                 <h6>Modern Equipment</h6>
                                 <p>suspendisse laculis lorem ipsum dolor nisl nec
                                     porttitor convallis</p>
